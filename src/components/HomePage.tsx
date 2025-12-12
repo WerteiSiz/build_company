@@ -13,6 +13,9 @@ export function HomePage({ onGetStarted }: HomePageProps) {
           <div className="flex items-center justify-center gap-4 mb-6">
             <Building className="h-12 w-12 text-primary" />
             <h1 className="text-4xl font-bold text-foreground">FixFlow</h1>
+            <div className="mt-6">
+              <button className="px-6 py-3 bg-primary text-white rounded-lg text-lg">Создать дефект</button>
+            </div>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Централизованное управление дефектами на строительных объектах

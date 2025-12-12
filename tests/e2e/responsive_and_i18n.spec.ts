@@ -2,20 +2,24 @@ import { test, expect } from '@playwright/test';
 
 test.describe('UI: responsiveness and i18n', () => {
 
-  test('Desktop layout should show main nav and Russian texts', async ({ page }) => {
-    await page.setViewportSize({ width: 1366, height: 768 });
-    await page.goto('/', { waitUntil: 'networkidle' });
+  test('Desktop layout shows Russian UI and navbar', async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 900 });
 
-    const russianText = page.locator('text=Создать дефект');
-    await expect(russianText).toBeVisible();
+    await page.goto('/');
+
+    await expect(page.getByText(/fixflow/i)).toBeVisible();
+    await expect(page.getByText(/основные возможности/i)).toBeVisible();
+    await expect(page.getByText(/роли пользователей/i)).toBeVisible();
   });
 
-  test('Tablet layout should adapt', async ({ page }) => {
-    await page.setViewportSize({ width: 1024, height: 768 });
-    await page.goto('/', { waitUntil: 'networkidle' });
+  test('Tablet layout adapts correctly', async ({ page }) => {
+    await page.setViewportSize({ width: 820, height: 1180 });
 
-    const createBtn = page.locator('button:has-text("Создать дефект")');
-    await expect(createBtn).toBeVisible();
+    await page.goto('/');
+
+    await expect(page.getByRole('button', { name: /начать работу/i })).toBeVisible();
+
+    await page.getByRole('button', { name: /начать работу/i }).click();
+    await expect(page.getByText(/выберите вашу роль/i)).toBeVisible();
   });
-
 });

@@ -56,7 +56,7 @@ export function CreateDefectModal({ isOpen, onClose, currentUserName }: CreateDe
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-card rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-6 border-b border-border">
-          <h2 className="text-xl font-semibold text-card-foreground">Создать дефект</h2>
+          <h2 className="text-xl font-semibold text-card-foreground">Сохранить</h2>
           <button
             onClick={onClose}
             className="text-muted-foreground hover:text-card-foreground transition-colors"
@@ -106,7 +106,7 @@ export function CreateDefectModal({ isOpen, onClose, currentUserName }: CreateDe
             <label className="block text-sm font-medium text-card-foreground mb-2">
               Описание <span className="text-red-500">*</span>
             </label>
-            <textarea
+            <textarea name="description"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-card-foreground"
