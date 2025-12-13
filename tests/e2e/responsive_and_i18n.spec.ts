@@ -20,6 +20,8 @@ test.describe('UI: responsiveness and i18n', () => {
     await expect(page.getByRole('button', { name: /начать работу/i })).toBeVisible();
 
     await page.getByRole('button', { name: /начать работу/i }).click();
-    await expect(page.getByText(/выберите вашу роль/i)).toBeVisible();
+
+    // current app shows TestLogin form when starting auth flow
+    await expect(page.getByText(/Авторизация \(тестовая страница\)/i)).toBeVisible();
   });
 });

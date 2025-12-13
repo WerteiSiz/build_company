@@ -63,7 +63,7 @@ export default function App() {
   return (
     <ProjectProvider>
       {currentPage === 'home' && <HomePage onGetStarted={handleGetStarted} />}
-      {currentPage === 'auth' && <TestLogin />}
+      {currentPage === 'auth' && <TestLogin onLogin={handleLogin} />}
       {currentPage === 'dashboard' && renderDashboard()}
       <Toaster />
     </ProjectProvider>
