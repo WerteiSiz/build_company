@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Filter, CheckCircle, XCircle } from "lucide-react";
 import { useProjects, Defect } from "./ProjectContext";
 
@@ -74,6 +74,26 @@ export function DefectList({ userRole, currentUserName, onApproveDefect }: Defec
     }
   };
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 5;
+  const pageCount = Math.max(1, Math.ceil(filteredDefects.length / itemsPerPage));
+
+  const paginatedDefects = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredDefects.slice(start, start + itemsPerPage);
+  }, [filteredDefects, currentPage]);
+
+  // Reset to first page when filters or role/user change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filterProject, filterStatus, filterManager, userRole, currentUserName]);
+
+  // Clamp current page if filtered list shrinks
+  useEffect(() => {
+    if (currentPage > pageCount) setCurrentPage(pageCount);
+  }, [currentPage, pageCount]);
+
   return (
     <div className="bg-card p-6 rounded-lg shadow-sm border border-border">
       <div className="flex items-center justify-between mb-6">
@@ -148,7 +168,7 @@ export function DefectList({ userRole, currentUserName, onApproveDefect }: Defec
             Дефекты не найдены
           </p>
         ) : (
-          filteredDefects.map((defect) => (
+          paginatedDefects.map((defect) => (
             <div key={defect.id} className="p-4 border border-border rounded-lg hover:shadow-md transition-shadow">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
@@ -228,6 +248,40 @@ export function DefectList({ userRole, currentUserName, onApproveDefect }: Defec
           ))
         )}
       </div>
+
+      {/* Pagination controls */}
+      {pageCount > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-4">
+          <button
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 text-sm border border-border rounded disabled:opacity-50"
+          >
+            Назад
+          </button>
+
+          {Array.from({ length: pageCount }).map((_, idx) => {
+            const page = idx + 1;
+            return (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-3 py-1 text-sm border rounded ${currentPage === page ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-card-foreground'}`}
+              >
+                {page}
+              </button>
+            );
+          })}
+
+          <button
+            onClick={() => setCurrentPage(p => Math.min(pageCount, p + 1))}
+            disabled={currentPage === pageCount}
+            className="px-3 py-1 text-sm border border-border rounded disabled:opacity-50"
+          >
+            Вперед
+          </button>
+        </div>
+      )}
     </div>
   );
 }
