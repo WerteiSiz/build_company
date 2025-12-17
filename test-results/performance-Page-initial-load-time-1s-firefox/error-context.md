@@ -1,0 +1,50 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - img [ref=e7]
+      - heading "FixFlow" [level=1] [ref=e19]
+      - button "Создать дефект" [ref=e21]
+    - paragraph [ref=e22]: Централизованное управление дефектами на строительных объектах
+  - generic [ref=e23]:
+    - heading "Основные возможности" [level=2] [ref=e24]
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - img [ref=e28]
+        - heading "Управление дефектами" [level=3] [ref=e40]
+        - paragraph [ref=e41]: Создание, отслеживание и контроль исправления дефектов
+      - generic [ref=e42]:
+        - img [ref=e44]
+        - heading "Разграничение ролей" [level=3] [ref=e49]
+        - paragraph [ref=e50]: Инженеры, менеджеры и руководители с разными правами доступа
+      - generic [ref=e51]:
+        - img [ref=e53]
+        - heading "Аналитика и отчеты" [level=3] [ref=e58]
+        - paragraph [ref=e59]: Детальная статистика и экспорт отчетов по проектам
+  - generic [ref=e60]:
+    - heading "Роли пользователей" [level=2] [ref=e61]
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - heading "Инженер" [level=3] [ref=e65]
+        - list [ref=e66]:
+          - listitem [ref=e67]: • Регистрация дефектов
+          - listitem [ref=e68]: • Обновление статусов
+          - listitem [ref=e69]: • Добавление комментариев
+      - generic [ref=e70]:
+        - heading "Менеджер" [level=3] [ref=e72]
+        - list [ref=e73]:
+          - listitem [ref=e74]: • Назначение исполнителей
+          - listitem [ref=e75]: • Контроль сроков
+          - listitem [ref=e76]: • Управление объектами
+      - generic [ref=e77]:
+        - heading "Руководитель" [level=3] [ref=e79]
+        - list [ref=e80]:
+          - listitem [ref=e81]: • Просмотр аналитики
+          - listitem [ref=e82]: • Формирование отчетов
+          - listitem [ref=e83]: • Общий контроль
+  - button "Начать работу" [ref=e85]:
+    - img [ref=e86]
+    - text: Начать работу
+```

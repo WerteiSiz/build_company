@@ -19,7 +19,7 @@ export default function App() {
     const p = window.location.pathname;
     if (p === '/login') setCurrentPage('auth');
     if (p === '/test-login') setCurrentPage('auth');
-    if (p === '/defects/new') setCurrentPage('home'); // keep home but we'll render modal via URL
+    if (p === '/defects/new') setCurrentPage('home'); 
   }, []);
 
 
